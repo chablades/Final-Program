@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e88930c3190b0f44f8338abdc004f127
+guid: 5131e9b0bfc139947ad2ae1e075f6441
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 954059279360489299
-    second: pullswordsout_0
+      213: 4072598593252468119
+    second: jump1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pullswordsout_0
+      name: jump1_0
       rect:
         serializedVersion: 2
-        x: 20
+        x: 0
         y: 0
-        width: 37
-        height: 31
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 35772f81cdf7d3d00800000000000000
-      internalID: 954059279360489299
+      spriteID: 795a19fc7d6c48830800000000000000
+      internalID: 4072598593252468119
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 1e782b3a5086d3f4baac0b75025f1de6
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      pullswordsout_0: 954059279360489299
+      jump1_0: 4072598593252468119
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
