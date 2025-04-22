@@ -136,8 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19c30908c69f9f94a98201dbb0cb1e22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
-  healthText: {fileID: 0}
+  maxLives: 3
 --- !u!1 &842050783
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,7 +359,7 @@ Transform:
   m_GameObject: {fileID: 971989183}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.36, y: -2.12, z: 0}
+  m_LocalPosition: {x: 5.56, y: -2.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -802,11 +801,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8064758725836472964, guid: 67fe6c6471de5f04e8c6455d4852d8de, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.39
+      value: -2.11
       objectReference: {fileID: 0}
     - target: {fileID: 8064758725836472964, guid: 67fe6c6471de5f04e8c6455d4852d8de, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.32
+      value: -1.31
       objectReference: {fileID: 0}
     - target: {fileID: 8064758725836472964, guid: 67fe6c6471de5f04e8c6455d4852d8de, type: 3}
       propertyPath: m_LocalPosition.z
@@ -919,7 +918,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1171300875894727169, guid: 447907b4f68b36a41ad00fdb6cb58145, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.58
+      value: 0.0014
       objectReference: {fileID: 0}
     - target: {fileID: 1171300875894727169, guid: 447907b4f68b36a41ad00fdb6cb58145, type: 3}
       propertyPath: m_LocalPosition.y
@@ -958,8 +957,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2030323420152192714, guid: 447907b4f68b36a41ad00fdb6cb58145, type: 3}
+      propertyPath: m_AutoTiling
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2030323420152192714, guid: 447907b4f68b36a41ad00fdb6cb58145, type: 3}
       propertyPath: m_SpriteTilingProperty.drawMode
-      value: 0
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2367096222279925146, guid: 447907b4f68b36a41ad00fdb6cb58145, type: 3}
+      propertyPath: m_Size.x
+      value: 12.2827215
+      objectReference: {fileID: 0}
+    - target: {fileID: 2367096222279925146, guid: 447907b4f68b36a41ad00fdb6cb58145, type: 3}
+      propertyPath: m_DrawMode
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
