@@ -228,6 +228,12 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
@@ -1098,11 +1104,27 @@ PrefabInstance:
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
       value: -2.867
       objectReference: {fileID: 0}
     - target: {fileID: 8064758725836472964, guid: 67fe6c6471de5f04e8c6455d4852d8de, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.105
+=======
+      value: -2.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 8064758725836472964, guid: 67fe6c6471de5f04e8c6455d4852d8de, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.3
+>>>>>>> Stashed changes
+=======
+      value: -2.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 8064758725836472964, guid: 67fe6c6471de5f04e8c6455d4852d8de, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.3
+>>>>>>> Stashed changes
 =======
       value: -2.07
       objectReference: {fileID: 0}
@@ -1314,6 +1336,12 @@ SceneRoots:
   - {fileID: 278348337}
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
