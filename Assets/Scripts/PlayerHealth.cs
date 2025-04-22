@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,7 +10,6 @@ public class PlayerHealth : MonoBehaviour
     {
         currentLives = maxLives;
         UIManager.Instance.UpdateLives(currentLives); // Optional UI
-
     }
 
     public void TakeDamage(int damage)
