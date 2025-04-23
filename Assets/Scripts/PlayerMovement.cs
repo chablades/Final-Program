@@ -5,11 +5,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float runSpeed;
     [SerializeField] private float attackRange = 1.5f;
     [SerializeField] private int attackDamage = 1;
+    [SerializeField] private LayerMask attackableLayer;
+    [SerializeField] private Transform attackTransform;
     //reference rigidbody and animator
     private Rigidbody2D rb;
     private Animator anim;
     private bool grounded;
     private bool isAttacking = false;
+    private int attackcounter = 0;
+    private RaycastHit2D[] hitEnemies;
 
     private void Awake()
     {
@@ -23,9 +27,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
 {
+       
     float horizontalInput = Input.GetAxis("Horizontal");
     // Horizontal Speed
-    rb.linearVelocity = new Vector2(horizontalInput * runSpeed, rb.linearVelocity.y);
+    if (isAttacking == false)
+        rb.linearVelocity = new Vector2(horizontalInput * runSpeed, rb.linearVelocity.y);
     
     // Flip sprite
     if (horizontalInput > 0.01f)
@@ -57,29 +63,46 @@ public class PlayerMovement : MonoBehaviour
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, runSpeed);
         anim.SetTrigger("jump");
         grounded = false;
+        attackcounter = 0;
     }
 
      private void Attack()
     {
         isAttacking = true;
-        //anim.SetTrigger("attack"); // Trigger attack animation
+        if (attackcounter == 0){
+            anim.SetTrigger("attacking0"); // Trigger attack animation
+            attackcounter +=1;
+        }
+        else if (attackcounter == 1){
+            anim.SetTrigger("attacking1"); // Trigger attack animation
+            attackcounter +=1;
+        }
+        else if (attackcounter == 2){
+            anim.SetTrigger("attacking2"); // Trigger attack animation
+            attackcounter = 0;
+        }
 
         // Detect enemies in range and deal damage
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, attackRange, LayerMask.GetMask("Enemy"));
-        foreach (Collider2D enemy in hitEnemies)
+        hitEnemies = Physics2D.CircleCastAll(attackTransform.position, attackRange, transform.right, 0f, attackableLayer);
+        
+        for (int i = 0; i< hitEnemies.Length; i++)
         {
             // You can add the method to deal damage here
-            Debug.Log("Hitting enemy: " + enemy.name);
-            enemy.GetComponent<EnemyHealth>().TakeDamage(attackDamage);
+            EnemyHealth enemyHealth = hitEnemies[i].collider.gameObject.GetComponent<EnemyHealth>();
+            enemyHealth.TakeDamage(attackDamage);
+            Debug.Log("Hitting enemy: " + enemyHealth);
         }
 
         // Reset attack flag after animation (assuming attack duration is 0.5 seconds)
-        Invoke("ResetAttack", 0.5f);
+        Invoke("ResetAttack", 1.1f);
     }
 
     private void ResetAttack()
     {
         isAttacking = false;
+        anim.SetBool("attacking0", false);
+        anim.SetBool("attacking1", false);
+        anim.SetBool("attacking2", false);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -88,9 +111,13 @@ public class PlayerMovement : MonoBehaviour
             grounded = true;
     }
 
+    public void Damaged(){
+        rb.AddForce(-transform.forward * 10000f * Time.deltaTime);
+    }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange); // Show attack range in the scene view
+        Gizmos.DrawWireSphere(attackTransform.position, attackRange); // Show attack range in the scene view
     }
 }
