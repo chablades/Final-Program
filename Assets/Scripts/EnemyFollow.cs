@@ -22,6 +22,7 @@ public class EnemyFollow : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        anim = GetComponent<Animator>();
     }
 
     private void Update()
@@ -30,9 +31,11 @@ public class EnemyFollow : MonoBehaviour
         {
             
             float distance = Vector2.Distance(transform.position, player.position);
+           
 
             if (distance < detectionRange)
             {
+                anim.SetBool("Moving", true);
                 Vector2 direction = (player.position - transform.position).normalized;
                 if(isAttacking == false)
                     movement = new Vector2(direction.x, 0f);
@@ -46,6 +49,7 @@ public class EnemyFollow : MonoBehaviour
             else
             {
                 movement = Vector2.zero;
+                anim.SetBool("Moving", false);
             }
         }
     }
@@ -55,28 +59,42 @@ public class EnemyFollow : MonoBehaviour
         rb.linearVelocity = new Vector2(movement.x * moveSpeed, rb.linearVelocity.y);
     }
 
-    private void OnTriggerEnter2D(){
-        isAttacking = true;
+    private void OnTriggerEnter2D(Collider2D collider){
+        if (isAttacking) return; //if already attacking, dont double attack
 
+        //check if the thing we are colliding with is in the attackable layer
+        if (((1 << collider.gameObject.layer) & attackableLayer) != 0)
+        {
+            isAttacking = true;
+            anim.SetBool("isAttacking", true);
+
+            //delay the attack damage to help match the animation timing
+            Invoke("DealDamage", 0.5f);
+
+            // Reset attack flag after animation (assuming attack duration is 0.5 seconds)
+            Invoke("ResetAttack", 1.0f);
+        }
+    }
+
+    private void DealDamage()
+    {
         hitPlayer = Physics2D.CircleCastAll(attackTransform.position, attackRange, transform.right, 0f, attackableLayer);
-        
-        for (int i = 0; i< hitPlayer.Length; i++)
+
+        for (int i = 0; i < hitPlayer.Length; i++)
         {
             // You can add the method to deal damage here
             PlayerHealth playerHealth = hitPlayer[i].collider.gameObject.GetComponent<PlayerHealth>();
             playerHealth.TakeDamage(damageAmount);
             Debug.Log("Player Hit: " + playerHealth);
         }
-
-        // Reset attack flag after animation (assuming attack duration is 0.5 seconds)
-        Invoke("ResetAttack", 1.1f);
     }
 
     private void ResetAttack()
     {
         isAttacking = false;
-        anim.SetBool("attacking0", false);
+        anim.SetBool("isAttacking", false);
     }
+
 
     // This function will be triggered when the enemy collides with the player
     // private void OnCollisionEnter2D(Collision2D collision)
