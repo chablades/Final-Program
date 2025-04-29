@@ -11,14 +11,17 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
     private bool grounded;
+    private bool knockedback;
     private bool isAttacking = false;
     private int attackcounter = 0;
     private RaycastHit2D[] hitEnemies;
+    private Knockback knockback;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        knockback = GetComponent<Knockback>();
     }
     void Start()
     {
@@ -27,23 +30,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
 {
-       
-    float horizontalInput = Input.GetAxis("Horizontal");
-    // Horizontal Speed
-    if (isAttacking == false)
-        rb.linearVelocity = new Vector2(horizontalInput * runSpeed, rb.linearVelocity.y);
-    
-    // Flip sprite
-    if (horizontalInput > 0.01f)
-        transform.localScale = Vector2.one;
-    else if (horizontalInput < -0.01f)
-        transform.localScale = new Vector2(-1, 1);
+    if (isAttacking == false && !knockback.IsBeingKnockedBack)
+        Move();
+        // Jump
+        if (Input.GetKey(KeyCode.Space) && grounded)
+        {
+            Jump();
+        }
 
-    // Jump
-    if (Input.GetKey(KeyCode.Space) && grounded)
-    {
-        Jump();
-    }
+    
 
     // Attack on 'F' key press
     if (Input.GetKeyDown(KeyCode.F) && !isAttacking)
@@ -53,11 +48,22 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Animation parameters
-    anim.SetBool("run", horizontalInput != 0);
     anim.SetBool("grounded", grounded);
 }
 
+    private void Move()
+    {
+        // Horizontal Speed
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        rb.linearVelocity = new Vector2(horizontalInput * runSpeed, rb.linearVelocity.y);
+        // Flip sprite
+        if (horizontalInput > 0.01f)
+            transform.localScale = Vector2.one;
+        else if (horizontalInput < -0.01f)
+            transform.localScale = new Vector2(-1, 1);
 
+        anim.SetBool("run", horizontalInput != 0);
+    }
     private void Jump()
     {
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, runSpeed);
@@ -89,7 +95,7 @@ public class PlayerMovement : MonoBehaviour
         {
             // You can add the method to deal damage here
             EnemyHealth enemyHealth = hitEnemies[i].collider.gameObject.GetComponent<EnemyHealth>();
-            enemyHealth.TakeDamage(attackDamage);
+            enemyHealth.TakeDamage(attackDamage, transform.right);
             Debug.Log("Hitting enemy: " + enemyHealth);
         }
 
@@ -111,9 +117,6 @@ public class PlayerMovement : MonoBehaviour
             grounded = true;
     }
 
-    public void Damaged(){
-        rb.AddForce(-transform.forward * 10000f * Time.deltaTime);
-    }
 
     private void OnDrawGizmosSelected()
     {
