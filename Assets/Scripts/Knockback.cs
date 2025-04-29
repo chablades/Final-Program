@@ -61,4 +61,5 @@ public class Knockback : MonoBehaviour
     public void CallKnockback(Vector2 hitDirection, Vector2 constantForceDirection, float inputDirection){
         knockbackCoroutine = StartCoroutine(KnockbackAction(hitDirection, constantForceDirection, inputDirection));
     }
+    
 }

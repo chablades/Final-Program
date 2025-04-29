@@ -11,7 +11,6 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
     private bool grounded;
-    private bool knockedback;
     private bool isAttacking = false;
     private int attackcounter = 0;
     private RaycastHit2D[] hitEnemies;
@@ -29,27 +28,28 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void Update()
-{
-    if (isAttacking == false && !knockback.IsBeingKnockedBack)
-        Move();
-        // Jump
-        if (Input.GetKey(KeyCode.Space) && grounded)
-        {
-            Jump();
-        }
-
-    
-
-    // Attack on 'F' key press
-    if (Input.GetKeyDown(KeyCode.F) && !isAttacking)
     {
-        Attack();
-        Debug.Log("Attacking!"); // Prints to the console when attacking
-    }
+    if (knockback.IsBeingKnockedBack ==false)
+        if (isAttacking == false)
+            Move();
+            // Jump
+            if (Input.GetKey(KeyCode.Space) && grounded)
+            {
+                Jump();
+            }
+
+        
+
+        // Attack on 'F' key press
+        if (Input.GetKeyDown(KeyCode.F) && !isAttacking)
+        {
+            Attack();
+            Debug.Log("Attacking!"); // Prints to the console when attacking
+        }
 
     // Animation parameters
     anim.SetBool("grounded", grounded);
-}
+    }
 
     private void Move()
     {

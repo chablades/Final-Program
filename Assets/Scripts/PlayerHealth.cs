@@ -17,7 +17,7 @@ public class PlayerHealth : MonoBehaviour
         knockback = GetComponent<Knockback>();
     }
 
-    public void TakeDamage(int damage, Vector2 hitDirection)
+    public void TakeDamage(int damage, Vector2 hitDirection, Rigidbody2D other)
     {
         currentLives -= damage;
         //UIManager.Instance.UpdateLives(currentLives); // Optional UI
@@ -27,7 +27,13 @@ public class PlayerHealth : MonoBehaviour
         {
             Die();
         }
-
+        
+         //Vector2 direction = (transform.position - other.transform.position).normalized;
+         //direction = new Vector2(-5, 0);
+         //Debug.Log(direction);
+        
+        // Apply the knockback force
+        //GetComponent<Rigidbody2D>().AddForce(direction * 10, ForceMode2D.Impulse);
         knockback.CallKnockback(hitDirection, Vector2.up, Input.GetAxisRaw("Horizontal"));
         
     }

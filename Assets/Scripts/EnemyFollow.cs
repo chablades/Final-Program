@@ -13,11 +13,14 @@ public class EnemyFollow : MonoBehaviour
     //reference rigidbody and animator
     private Animator anim;
     private bool isAttacking = false;
+
+    private bool isLeft = true;
     private RaycastHit2D[] hitPlayer;
 
     private Transform player;
     private Rigidbody2D rb;
     private Vector2 movement;
+    private Collision2D c2d;
 
     private void Awake()
     {
@@ -40,10 +43,14 @@ public class EnemyFollow : MonoBehaviour
                     movement = new Vector2(direction.x, 0f);
 
                 // Flip to face player (this step can be optional depending on your design)
-                if (player.position.x > transform.position.x)
-                    transform.localScale = new Vector2(-1, 1); // Facing right
-                else if (player.position.x < transform.position.x)
-                    transform.localScale = new Vector2(1, 1); // Facing left
+                if (player.position.x > transform.position.x){
+                    transform.localScale = new Vector2(-1, 1); // Facing right]
+                    isLeft = false;
+                }
+                else if (player.position.x < transform.position.x){
+                    transform.localScale = new Vector2(1, 1); // Facing left\
+                    isLeft = true;
+                }
             }
             else
             {
@@ -63,6 +70,8 @@ public class EnemyFollow : MonoBehaviour
         anim.SetBool("hasTarget", true);
 
         Invoke("Attack", 0.4f);
+
+
         
         // Reset attack flag after animation (assuming attack duration is 0.5 seconds)
         Invoke("ResetAttack", 1.1f);
@@ -75,8 +84,11 @@ public class EnemyFollow : MonoBehaviour
         {
             // You can add the method to deal damage here
             PlayerHealth playerHealth = hitPlayer[i].collider.gameObject.GetComponent<PlayerHealth>();
-            playerHealth.TakeDamage(damageAmount, (player.position - transform.position).normalized);
-            Debug.Log("Player Hit: " + playerHealth);
+            if(isLeft==true)
+                playerHealth.TakeDamage(damageAmount, -transform.position, rb);
+            else 
+                playerHealth.TakeDamage(damageAmount, transform.position, rb);
+            Debug.Log("Hitting enemy: " + playerHealth);
         }
 
     }
