@@ -1,18 +1,23 @@
-using System.Numerics;
+using System;
 using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private int maxLives = 3;
     private int currentLives;
+
+    private Knockback knockback;
     private void Start()
     {
         currentLives = maxLives;
         //UIManager.Instance.UpdateLives(currentLives); // Optional UI
+
+        knockback = GetComponent<Knockback>();
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, Vector2 hitDirection)
     {
         currentLives -= damage;
         //UIManager.Instance.UpdateLives(currentLives); // Optional UI
@@ -22,12 +27,14 @@ public class PlayerHealth : MonoBehaviour
         {
             Die();
         }
+
+        knockback.CallKnockback(hitDirection, Vector2.up, Input.GetAxisRaw("Horizontal"));
         
     }
 
     private void Die()
     {
         Debug.Log("Player Died!");
-        GameManager.Instance.PlayerDied();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Restart
     }
 }
