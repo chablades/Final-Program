@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
     if (knockback.IsBeingKnockedBack ==false && isAttacking == false && dash.dashing == false)
         Move();
         //Dash with cooldown of aprox 5s
-        if (Input.GetMouseButton(1) && dashtimer > 30f)
+        if (Input.GetMouseButton(1) && dashtimer > 30f) //right click
         {
             Dash();
         }
