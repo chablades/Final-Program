@@ -1,3 +1,5 @@
+using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -7,20 +9,24 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private int attackDamage = 1;
     [SerializeField] private LayerMask attackableLayer;
     [SerializeField] private Transform attackTransform;
+
     //reference rigidbody and animator
     private Rigidbody2D rb;
     private Animator anim;
     private bool grounded;
     private bool isAttacking = false;
     private int attackcounter = 0;
+    private float dashtimer = 30f;
     private RaycastHit2D[] hitEnemies;
     private Knockback knockback;
+    private DashFoward dash;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         knockback = GetComponent<Knockback>();
+        dash = GetComponent<DashFoward>();
     }
     void Start()
     {
@@ -29,8 +35,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-    if (knockback.IsBeingKnockedBack ==false && isAttacking == false)
+    if (knockback.IsBeingKnockedBack ==false && isAttacking == false && dash.dashing == false)
         Move();
+        //Dash with cooldown of aprox 5s
+        if (Input.GetMouseButton(1) && dashtimer > 30f)
+        {
+            Dash();
+        }
+
         // Jump
         if (Input.GetKey(KeyCode.Space) && grounded)
         {
@@ -47,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
 
     // Animation parameters
     anim.SetBool("grounded", grounded);
+    dashtimer += Time.fixedDeltaTime;
     }
     
 
@@ -69,6 +82,13 @@ public class PlayerMovement : MonoBehaviour
         anim.SetTrigger("jump");
         grounded = false;
         attackcounter = 0;
+    }
+
+    private void Dash()
+    {
+        Debug.Log("dash");
+        dash.CallDash();
+        dashtimer =0f;
     }
 
      private void Attack()
