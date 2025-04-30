@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 8902754193839260433}
   - component: {fileID: 8371237704354385732}
   - component: {fileID: 9117649640970388161}
-  - component: {fileID: 5938029331457245124}
+  - component: {fileID: 4611280497361497935}
   m_Layer: 6
   m_Name: Enemy1
   m_TagString: Enemy
@@ -114,7 +114,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 4970262758976119680, guid: fc52820723f67664087d8e58cc84a3ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -212,7 +212,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -258,7 +258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
-  detectionRange: 20
+  detectionRange: 5
   damageAmount: 1
   attackableLayer:
     serializedVersion: 2
@@ -278,6 +278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 50
+  isDamaged: 0
 --- !u!95 &9117649640970388161
 Animator:
   serializedVersion: 7
@@ -300,7 +301,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5938029331457245124
+--- !u!114 &4611280497361497935
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -309,10 +310,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 6693816853253150499}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a340d33354522504988b4d598170ba1b, type: 3}
+  m_Script: {fileID: 11500000, guid: 2c87d593966491d4c8d7dfb5194d8e05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockbackTime: 0.2
-  hitDirectionForce: 10
-  consForce: 5
-  inputForce: 7.5
+  knockbackTime: 0.1
+  force: 10

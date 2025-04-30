@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Resources;
 using UnityEngine;
 
-public class Knockback : MonoBehaviour
+public class KnockbackEnemy : MonoBehaviour
 {
     [SerializeField] public float knockbackTime = 0.2f;
     [SerializeField] public float force = 1f;
@@ -18,28 +18,28 @@ public class Knockback : MonoBehaviour
            rb = GetComponent<Rigidbody2D>();
     }
 
-    public IEnumerator KnockbackAction(Rigidbody2D enemyLoc){
+    public IEnumerator KnockbackAction(Rigidbody2D playerLoc){
         IsBeingKnockedBack = true;
 
         float elapsedTime = 0f;
         while(elapsedTime < knockbackTime){
             //iterate the timer
             elapsedTime += Time.fixedDeltaTime;
-            Vector2 direction = (transform.position - enemyLoc.transform.position).normalized;
+            Vector2 direction = (transform.position - playerLoc.transform.position).normalized;
             direction = new Vector2(direction.x, 0);
-            Debug.Log(direction);            
+            Debug.Log(direction);
             // Apply the knockback force
             rb.AddForce(direction * force, ForceMode2D.Impulse);
             
             yield return new WaitForFixedUpdate();
-
         }
         IsBeingKnockedBack = false;
+        
     }
 
-    public void CallKnockback(Rigidbody2D enemyLoc){
+    public void CallKnockback(Rigidbody2D playerLoc){
         rb.linearVelocity = Vector2.zero;
-        knockbackCoroutine = StartCoroutine(KnockbackAction(enemyLoc));
+        knockbackCoroutine = StartCoroutine(KnockbackAction(playerLoc));
     }
     
 }

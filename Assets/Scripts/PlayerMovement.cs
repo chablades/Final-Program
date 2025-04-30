@@ -29,27 +29,26 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-    if (knockback.IsBeingKnockedBack ==false)
-        if (isAttacking == false)
-            Move();
-            // Jump
-            if (Input.GetKey(KeyCode.Space) && grounded)
-            {
-                Jump();
-            }
-
-        
+    if (knockback.IsBeingKnockedBack ==false && isAttacking == false)
+        Move();
+        // Jump
+        if (Input.GetKey(KeyCode.Space) && grounded)
+        {
+            Jump();
+        }
 
         // Attack on 'F' key press
         if (Input.GetKeyDown(KeyCode.F) && !isAttacking)
         {
-            Attack();
-            Debug.Log("Attacking!"); // Prints to the console when attacking
+            rb.linearVelocity = Vector2.zero;
+            Invoke("Attack", 0.3f);
+            //Debug.Log("Attacking!"); // Prints to the console when attacking
         }
 
     // Animation parameters
     anim.SetBool("grounded", grounded);
     }
+    
 
     private void Move()
     {
@@ -95,8 +94,7 @@ public class PlayerMovement : MonoBehaviour
         {
             // You can add the method to deal damage here
             EnemyHealth enemyHealth = hitEnemies[i].collider.gameObject.GetComponent<EnemyHealth>();
-            enemyHealth.TakeDamage(attackDamage, transform.right);
-            Debug.Log("Hitting enemy: " + enemyHealth);
+            enemyHealth.TakeDamage(attackDamage, rb);
         }
 
         // Reset attack flag after animation (assuming attack duration is 0.5 seconds)
@@ -115,6 +113,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
             grounded = true;
+
     }
 
 

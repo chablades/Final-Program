@@ -17,7 +17,7 @@ public class PlayerHealth : MonoBehaviour
         knockback = GetComponent<Knockback>();
     }
 
-    public void TakeDamage(int damage, Vector2 hitDirection, Rigidbody2D other)
+    public void TakeDamage(int damage, Rigidbody2D enemy)
     {
         currentLives -= damage;
         //UIManager.Instance.UpdateLives(currentLives); // Optional UI
@@ -34,7 +34,7 @@ public class PlayerHealth : MonoBehaviour
         
         // Apply the knockback force
         //GetComponent<Rigidbody2D>().AddForce(direction * 10, ForceMode2D.Impulse);
-        knockback.CallKnockback(hitDirection, Vector2.up, Input.GetAxisRaw("Horizontal"));
+        knockback.CallKnockback(enemy);
         
     }
 

@@ -20,58 +20,54 @@ public class EnemyFollow : MonoBehaviour
     private Transform player;
     private Rigidbody2D rb;
     private Vector2 movement;
-    private Collision2D c2d;
+    private EnemyHealth enemyHealth;
+    private KnockbackEnemy knockbackEnemy;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        enemyHealth = GetComponent<EnemyHealth>();
+        knockbackEnemy = GetComponent<KnockbackEnemy>();
     }
 
     private void Update()
     {
-        if (player != null)
-        {
-            
-            float distance = Vector2.Distance(transform.position, player.position);
-
-            if (distance < detectionRange)
-            {
-                Vector2 direction = (player.position - transform.position).normalized;
-                if(isAttacking == false)
-                    movement = new Vector2(direction.x, 0f);
-
-                // Flip to face player (this step can be optional depending on your design)
-                if (player.position.x > transform.position.x){
-                    transform.localScale = new Vector2(-1, 1); // Facing right]
-                    isLeft = false;
-                }
-                else if (player.position.x < transform.position.x){
-                    transform.localScale = new Vector2(1, 1); // Facing left\
-                    isLeft = true;
-                }
-            }
-            else
-            {
-                movement = Vector2.zero;
-            }
+        if (knockbackEnemy.IsBeingKnockedBack == false && isAttacking == false){
+            Move();
         }
     }
 
     private void FixedUpdate()
-    {
-        rb.linearVelocity = new Vector2(movement.x * moveSpeed, rb.linearVelocity.y);
+    {   
     }
 
+    private void Move(){
+        float distance = Vector2.Distance(transform.position, player.position);
+        if (distance < detectionRange)
+        {
+            Vector2 direction = (player.position - transform.position).normalized;
+            movement = new Vector2(direction.x, 0f);
+
+            // Flip to face player (this step can be optional depending on your design)
+            if (player.position.x > transform.position.x){
+                transform.localScale = new Vector2(-1, 1); // Facing right]
+                isLeft = false;
+            }
+            else if (player.position.x < transform.position.x){
+                transform.localScale = new Vector2(1, 1); // Facing left\
+                isLeft = true;
+            }
+            rb.linearVelocity = new Vector2(movement.x * moveSpeed, rb.linearVelocity.y);
+        }
+    }
     private void OnTriggerEnter2D(){
         isAttacking = true;
 
         anim.SetBool("hasTarget", true);
 
         Invoke("Attack", 0.4f);
-
-
         
         // Reset attack flag after animation (assuming attack duration is 0.5 seconds)
         Invoke("ResetAttack", 1.1f);
@@ -85,10 +81,9 @@ public class EnemyFollow : MonoBehaviour
             // You can add the method to deal damage here
             PlayerHealth playerHealth = hitPlayer[i].collider.gameObject.GetComponent<PlayerHealth>();
             if(isLeft==true)
-                playerHealth.TakeDamage(damageAmount, -transform.position, rb);
+                playerHealth.TakeDamage(damageAmount, rb);
             else 
-                playerHealth.TakeDamage(damageAmount, transform.position, rb);
-            Debug.Log("Hitting enemy: " + playerHealth);
+                playerHealth.TakeDamage(damageAmount, rb);
         }
 
     }

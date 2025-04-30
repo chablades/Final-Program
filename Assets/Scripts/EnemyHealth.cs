@@ -5,17 +5,18 @@ public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] private int maxHealth = 2;
     private int currentHealth;
-    private Knockback knockback;
     private Rigidbody2D rb;
+    public bool isDamaged = false;
+    private KnockbackEnemy knockbackEnemy;
     private void Start()
     {
         currentHealth = maxHealth;
         rb = GetComponent<Rigidbody2D>();
-        knockback = GetComponent<Knockback>();
+        knockbackEnemy = GetComponent<KnockbackEnemy>();
     }
 
-    public void TakeDamage(int amount, Vector2 hitDirection)
-    {
+    public void TakeDamage(int amount, Rigidbody2D player)
+    {   
         currentHealth -= amount;
         Debug.Log("Enemy took damage! Remaining: " + currentHealth);
 
@@ -23,8 +24,8 @@ public class EnemyHealth : MonoBehaviour
         {
             Die();
         }
-
-        knockback.CallKnockback(hitDirection, Vector2.up, Input.GetAxisRaw("Horizontal"));
+        
+        knockbackEnemy.CallKnockback(player);
     }
 
     private void Die()
