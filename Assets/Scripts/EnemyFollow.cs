@@ -47,6 +47,7 @@ public class EnemyFollow : MonoBehaviour
         float distance = Vector2.Distance(transform.position, player.position);
         if (distance < detectionRange)
         {
+            anim.SetBool("Moving", true);
             Vector2 direction = (player.position - transform.position).normalized;
             movement = new Vector2(direction.x, 0f);
 
@@ -67,10 +68,10 @@ public class EnemyFollow : MonoBehaviour
 
         anim.SetBool("hasTarget", true);
 
-        Invoke("Attack", 0.4f);
+        Invoke("Attack", 0.5f);
         
         // Reset attack flag after animation (assuming attack duration is 0.5 seconds)
-        Invoke("ResetAttack", 1.1f);
+        Invoke("ResetAttack", 1.0f);
     }
 
     private void Attack(){
