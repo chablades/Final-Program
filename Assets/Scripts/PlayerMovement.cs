@@ -1,6 +1,7 @@
 using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.Rendering.RenderGraphModule;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -17,9 +18,11 @@ public class PlayerMovement : MonoBehaviour
     private bool isAttacking = false;
     private int attackcounter = 0;
     private float dashtimer = 30f;
+    private float screenHeight, screenWidth;
     private RaycastHit2D[] hitEnemies;
     private Knockback knockback;
     private DashFoward dash;
+    private new Camera camera;
 
     private void Awake()
     {
@@ -27,6 +30,9 @@ public class PlayerMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         knockback = GetComponent<Knockback>();
         dash = GetComponent<DashFoward>();
+        camera = Camera.main;
+        screenHeight = camera.orthographicSize;
+        screenWidth = screenHeight * camera.aspect;
     }
     void Start()
     {
@@ -61,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
     anim.SetBool("grounded", grounded);
     dashtimer += Time.fixedDeltaTime;
     }
-    
+
 
     private void Move()
     {

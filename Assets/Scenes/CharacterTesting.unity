@@ -489,10 +489,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1090944071482294016, guid: 67fe6c6471de5f04e8c6455d4852d8de, type: 3}
-      propertyPath: force
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 3162120770317622594, guid: 67fe6c6471de5f04e8c6455d4852d8de, type: 3}
       propertyPath: m_Name
       value: Player
@@ -761,17 +757,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4611280497361497935, guid: 876b0027bd6d667458074b83908545d5, type: 3}
-      propertyPath: force
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 6693816853253150499, guid: 876b0027bd6d667458074b83908545d5, type: 3}
       propertyPath: m_Name
       value: Enemy1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8902754193839260433, guid: 876b0027bd6d667458074b83908545d5, type: 3}
-      propertyPath: detectionRange
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
