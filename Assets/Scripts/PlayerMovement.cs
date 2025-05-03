@@ -56,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // Attack on 'F' key press
-        if (Input.GetKeyDown(KeyCode.F) && !isAttacking)
+        if (Input.GetKeyDown(KeyCode.F) && isAttacking == false)
         {
             rb.linearVelocity = Vector2.zero;
             Invoke("Attack", 0.3f);

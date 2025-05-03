@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Goblin_Sword (walking 6)_0: -9142282628376870454
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
