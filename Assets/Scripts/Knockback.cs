@@ -26,10 +26,16 @@ public class Knockback : MonoBehaviour
             //iterate the timer
             elapsedTime += Time.fixedDeltaTime;
             Vector2 direction = (transform.position - enemyLoc.transform.position).normalized;
-            direction = new Vector2(direction.x, 0);
+
+            if (direction.x > 0){
+                direction = new Vector2(force, 0);
+            }
+            else{
+                direction = new Vector2(-force,0);
+            }
             Debug.Log(direction);            
             // Apply the knockback force
-            rb.AddForce(direction * force, ForceMode2D.Impulse);
+            rb.AddForce(direction, ForceMode2D.Impulse);
             
             yield return new WaitForFixedUpdate();
 
