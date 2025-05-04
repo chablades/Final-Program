@@ -49,18 +49,18 @@ public class PlayerMovement : MonoBehaviour
             Dash();
         }
 
-        // Jump
+        //jump
         if (Input.GetKey(KeyCode.Space) && grounded)
         {
             Jump();
         }
 
-        // Attack on 'F' key press
+        //Attack on 'F' key press
         if (Input.GetKeyDown(KeyCode.F) && isAttacking == false)
         {
             rb.linearVelocity = Vector2.zero;
             Invoke("Attack", 0.3f);
-            //Debug.Log("Attacking!"); // Prints to the console when attacking
+            //Debug.Log("Attacking!"); //prints to the console when attacking
         }
 
     // Animation parameters
@@ -118,12 +118,11 @@ public class PlayerMovement : MonoBehaviour
         
         for (int i = 0; i< hitEnemies.Length; i++)
         {
-            // You can add the method to deal damage here
             EnemyHealth enemyHealth = hitEnemies[i].collider.gameObject.GetComponent<EnemyHealth>();
             enemyHealth.TakeDamage(attackDamage, rb);
         }
 
-        // Reset attack flag after animation (assuming attack duration is 0.5 seconds)
+        //resetting attack flag
         Invoke("ResetAttack", 1.1f);
     }
 
@@ -146,6 +145,6 @@ public class PlayerMovement : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(attackTransform.position, attackRange); // Show attack range in the scene view
+        Gizmos.DrawWireSphere(attackTransform.position, attackRange); //showing attack range in scene view
     }
 }

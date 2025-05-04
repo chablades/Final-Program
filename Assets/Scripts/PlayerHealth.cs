@@ -12,15 +12,12 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         currentLives = maxLives;
-        //UIManager.Instance.UpdateLives(currentLives); // Optional UI
-
         knockback = GetComponent<Knockback>();
     }
 
     public void TakeDamage(int damage, Rigidbody2D enemy)
     {
         currentLives -= damage;
-        //UIManager.Instance.UpdateLives(currentLives); // Optional UI
         Debug.Log("Player took damage! Lives left: " + currentLives);
        
         if (currentLives <= 0)
@@ -41,6 +38,6 @@ public class PlayerHealth : MonoBehaviour
     private void Die()
     {
         Debug.Log("Player Died!");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Restart
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); //letting player know they died
     }
 }
