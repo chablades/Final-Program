@@ -37,8 +37,10 @@ public class GameManager : MonoBehaviour
 
     public void RestartLevel()
     {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    if (pausePanel) pausePanel.SetActive(false); 
+    _isPaused = false; 
+    Time.timeScale = 1f;
+    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void TogglePause()
