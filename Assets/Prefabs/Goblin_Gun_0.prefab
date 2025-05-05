@@ -113,7 +113,6 @@ MonoBehaviour:
   attackableLayer:
     serializedVersion: 2
     m_Bits: 64
-  attackTransform: {fileID: 0}
   bullet: {fileID: 6118020070037664261, guid: 5e8f035e6515f9b45bf458ca57e3b121, type: 3}
   attackRange: 1.5
 --- !u!114 &3596428008433530514
@@ -128,8 +127,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c87d593966491d4c8d7dfb5194d8e05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  knockbackTime: 0.2
-  force: 1
+  enemyKnockbackTime: 0.1
+  force: 10
 --- !u!114 &1418176067795712551
 MonoBehaviour:
   m_ObjectHideFlags: 0

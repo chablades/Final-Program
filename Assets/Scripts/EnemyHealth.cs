@@ -25,7 +25,7 @@ public class EnemyHealth : MonoBehaviour
             Die();
         }
         
-        knockbackEnemy.CallKnockback(player);
+        knockbackEnemy.EnemyCallKnockback(player);
     }
 
     private void Die()

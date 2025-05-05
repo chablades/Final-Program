@@ -43,11 +43,12 @@ public class Projectile : MonoBehaviour
         if (player.gameObject.name.Equals("Player")){
             //destroy projectile
             rb.linearVelocity = Vector2.zero;
-            Destroy(gameObject);
 
             //damage player
+            Debug.Log("projectile hit player");
             PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
             playerHealth.TakeDamage(damageAmount, rb);
+            Destroy(gameObject);
         }
     }
 }

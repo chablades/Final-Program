@@ -218,6 +218,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   attackTransform: {fileID: 4442552351499007725}
+  dashCooldown: 5
 --- !u!95 &2139822454366497316
 Animator:
   serializedVersion: 7

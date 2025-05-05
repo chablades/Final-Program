@@ -15,7 +15,7 @@ public class EnemyFollow : MonoBehaviour
     private bool isAttacking = false;
 
     private bool isLeft = true;
-    private RaycastHit2D[] hitPlayer;
+    private RaycastHit2D hitPlayer;
 
     private Transform player;
     private Rigidbody2D rb;
@@ -32,15 +32,11 @@ public class EnemyFollow : MonoBehaviour
         knockbackEnemy = GetComponent<KnockbackEnemy>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        if (knockbackEnemy.IsBeingKnockedBack == false && isAttacking == false){
+        if (knockbackEnemy.EnemyIsBeingKnockedBack == false && isAttacking == false){
             Move();
         }
-    }
-
-    private void FixedUpdate()
-    {   
     }
 
     private void Move(){
@@ -59,33 +55,33 @@ public class EnemyFollow : MonoBehaviour
                 transform.localScale = new Vector2(1, 1); //Facing left
                 isLeft = true;
             }
-            rb.linearVelocity = new Vector2(movement.x * moveSpeed, rb.linearVelocity.y);
+            if (knockbackEnemy.EnemyIsBeingKnockedBack == false){
+                rb.linearVelocity = new Vector2(movement.x * moveSpeed, rb.linearVelocity.y);
+            }
         }
     }
     private void OnTriggerEnter2D(){
-        isAttacking = true;
+        if (isAttacking == false){
+            isAttacking = true;
+            anim.SetBool("hasTarget", true);
 
-        anim.SetBool("hasTarget", true);
-
-        Invoke("Attack", 0.5f);
-        
-        //resetting enemy attack flag
-        Invoke("ResetAttack", 1.0f);
+            Invoke("Attack", 0.5f);
+            
+            //resetting enemy attack flag
+            Invoke("ResetAttack", 1.0f);
+        }
     }
 
     private void Attack(){
-        hitPlayer = Physics2D.CircleCastAll(attackTransform.position, attackRange, transform.right, 0f, attackableLayer);
+        hitPlayer = Physics2D.CircleCast(attackTransform.position, attackRange, transform.right, 0f, attackableLayer);
         
-        for (int i = 0; i< hitPlayer.Length; i++)
-        {
-            PlayerHealth playerHealth = hitPlayer[i].collider.gameObject.GetComponent<PlayerHealth>();
-            if(isLeft==true)
-                playerHealth.TakeDamage(damageAmount, rb);
-            else 
-                playerHealth.TakeDamage(damageAmount, rb);
-        }
-
+        PlayerHealth playerHealth = hitPlayer.collider.gameObject.GetComponent<PlayerHealth>();
+        if(isLeft==true)
+            playerHealth.TakeDamage(damageAmount, rb);
+        else 
+            playerHealth.TakeDamage(damageAmount, rb);
     }
+    
     private void ResetAttack()
     {
         isAttacking = false;

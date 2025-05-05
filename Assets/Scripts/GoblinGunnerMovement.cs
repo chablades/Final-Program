@@ -10,7 +10,6 @@ public class GoblinGUnnerMovement : MonoBehaviour
     [SerializeField] private float fireRate = 5f;
     [SerializeField] private int damageAmount = 1;  // Amount of damage the enemy will deal
     [SerializeField] private LayerMask attackableLayer;
-    [SerializeField] private Transform attackTransform;
     [SerializeField] private GameObject bullet;
     [SerializeField] private float attackRange = 1.5f;
     //reference rigidbody and animator
@@ -45,7 +44,7 @@ public class GoblinGUnnerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         Shoot();
-        if (knockbackEnemy.IsBeingKnockedBack == false && isShooting == false){
+        if (knockbackEnemy.EnemyIsBeingKnockedBack == false && isShooting == false){
             Move();
         }
     }
@@ -115,10 +114,4 @@ public class GoblinGUnnerMovement : MonoBehaviour
     //     }
     //     }
     // }
-    
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(attackTransform.position, attackRange); // Show attack range in the scene view
-    }
 }

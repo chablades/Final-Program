@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private int attackDamage = 1;
     [SerializeField] private LayerMask attackableLayer;
     [SerializeField] private Transform attackTransform;
+    [SerializeField] private float dashCooldown = 5f;
 
     //reference rigidbody and animator
     private Rigidbody2D rb;
@@ -17,9 +18,9 @@ public class PlayerMovement : MonoBehaviour
     private bool grounded;
     private bool isAttacking = false;
     private int attackcounter = 0;
-    private float dashtimer = 30f;
+    private float dashtimer = 100;
     private float screenHeight, screenWidth;
-    private RaycastHit2D[] hitEnemies;
+    private RaycastHit2D hitEnemies;
     private Knockback knockback;
     private DashFoward dash;
     private new Camera camera;
@@ -42,9 +43,21 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
     if (knockback.IsBeingKnockedBack ==false && isAttacking == false && dash.dashing == false)
+        //Attack on 'F' key press
+        if (Input.GetKeyDown(KeyCode.F) && isAttacking == false)
+        {
+            rb.linearVelocity = Vector2.zero;
+            Invoke("Attack", 0.3f);
+            //Debug.Log("Attacking!"); //prints to the console when attacking
+        }
+    }
+
+    private void FixedUpdate()
+    {
+    if (knockback.IsBeingKnockedBack ==false && isAttacking == false && dash.dashing == false)
         Move();
         //Dash with cooldown of aprox 5s
-        if (Input.GetMouseButton(1) && dashtimer > 30f) //right click
+        if (Input.GetMouseButton(1) && dashtimer > dashCooldown) //right click
         {
             Dash();
         }
@@ -99,31 +112,29 @@ public class PlayerMovement : MonoBehaviour
 
      private void Attack()
     {
-        isAttacking = true;
-        if (attackcounter == 0){
-            anim.SetTrigger("attacking0"); // Trigger attack animation
-            attackcounter +=1;
-        }
-        else if (attackcounter == 1){
-            anim.SetTrigger("attacking1"); // Trigger attack animation
-            attackcounter +=1;
-        }
-        else if (attackcounter == 2){
-            anim.SetTrigger("attacking2"); // Trigger attack animation
-            attackcounter = 0;
-        }
+        if(isAttacking == false){
+            rb.linearVelocity = Vector2.zero;
+            isAttacking = true;
+            if (attackcounter == 0){
+                anim.SetTrigger("attacking0"); // Trigger attack animation
+                attackcounter +=1;
+            }
+            else if (attackcounter == 1){
+                anim.SetTrigger("attacking1"); // Trigger attack animation
+                attackcounter +=1;
+            }
+            else if (attackcounter == 2){
+                anim.SetTrigger("attacking2"); // Trigger attack animation
+                attackcounter = 0;
+            }
 
-        // Detect enemies in range and deal damage
-        hitEnemies = Physics2D.CircleCastAll(attackTransform.position, attackRange, transform.right, 0f, attackableLayer);
-        
-        for (int i = 0; i< hitEnemies.Length; i++)
-        {
-            EnemyHealth enemyHealth = hitEnemies[i].collider.gameObject.GetComponent<EnemyHealth>();
+            // Detect enemies in range and deal damage
+            hitEnemies = Physics2D.CircleCast(attackTransform.position, attackRange, transform.right, 0f, attackableLayer);
+            EnemyHealth enemyHealth = hitEnemies.collider.gameObject.GetComponent<EnemyHealth>();
             enemyHealth.TakeDamage(attackDamage, rb);
+            //resetting attack flag
+            Invoke("ResetAttack", 1.1f);
         }
-
-        //resetting attack flag
-        Invoke("ResetAttack", 1.1f);
     }
 
     private void ResetAttack()

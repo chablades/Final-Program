@@ -11,7 +11,7 @@ public class DashFoward : MonoBehaviour
     [SerializeField] public float dashdist = 1f;
 
     private Rigidbody2D rb;
-    private Coroutine knockbackCoroutine;
+    private Coroutine dashCoroutine;
     private Animator anim;
     public bool dashing {get; private set;}
 
@@ -32,11 +32,10 @@ public class DashFoward : MonoBehaviour
             if (Input.GetAxisRaw("Horizontal") > 0.01f)
                 direction = new Vector2(1, 0);
             else if (Input.GetAxisRaw("Horizontal") < -0.01f)
-                direction = new Vector2(-1, 0);
-
-            Debug.Log(direction);            
+                direction = new Vector2(-1, 0);          
             // Apply the knockback force
             rb.AddForce(direction * dashdist, ForceMode2D.Impulse);
+            Debug.Log(direction);  
             
             yield return new WaitForFixedUpdate();
 
@@ -53,7 +52,7 @@ public class DashFoward : MonoBehaviour
         anim.SetTrigger("dashing");
         anim.SetBool("run", false);
         anim.SetBool("grounded", false);
-        knockbackCoroutine = StartCoroutine(Dash());
+        dashCoroutine = StartCoroutine(Dash());
     }
     
 }
