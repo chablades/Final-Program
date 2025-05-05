@@ -1,10 +1,22 @@
 fileFormatVersion: 2
-guid: ef48cd23958d73f4aa4121dbfa7a88cb
+guid: a68d7403ca05a6f42bf74395dbfdcf64
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8882018789552535208
-    second: House3_0
+      213: 1087231845656389850
+    second: clouds3_0
+  - first:
+      213: 3622165787865523572
+    second: clouds3_1
+  - first:
+      213: 7633652261233015834
+    second: clouds3_2
+  - first:
+      213: 5567308419094431435
+    second: clouds3_3
+  - first:
+      213: -6188151451806711017
+    second: clouds3_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,12 +58,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 75
+  spritePixelsToUnits: 25
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,13 +112,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: House3_0
+      name: clouds3_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 0
-        width: 255
-        height: 216
+        x: 5
+        y: 105
+        width: 18
+        height: 21
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +127,96 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 859406848fabcb480800000000000000
-      internalID: -8882018789552535208
+      spriteID: ad867dc6a9f961f00800000000000000
+      internalID: 1087231845656389850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: clouds3_1
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 96
+        width: 26
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4752c4fc794844230800000000000000
+      internalID: 3622165787865523572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: clouds3_2
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 94
+        width: 34
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1cb6a9694e20f960800000000000000
+      internalID: 7633652261233015834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: clouds3_3
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 86
+        width: 33
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc64a23a28d034d40800000000000000
+      internalID: 5567308419094431435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: clouds3_4
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 91
+        width: 21
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7134eb27a054f1aa0800000000000000
+      internalID: -6188151451806711017
       vertices: []
       indices: 
       edges: []
@@ -125,7 +225,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +235,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      House3_0: -8882018789552535208
+      clouds3_0: 1087231845656389850
+      clouds3_1: 3622165787865523572
+      clouds3_2: 7633652261233015834
+      clouds3_3: 5567308419094431435
+      clouds3_4: -6188151451806711017
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

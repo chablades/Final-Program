@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Royal_Goblin_Mage_0: -1921426377631443055
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
