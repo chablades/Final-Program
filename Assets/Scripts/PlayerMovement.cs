@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
     {
     if (knockback.IsBeingKnockedBack ==false && isAttacking == false && dash.dashing == false)
         //Attack on 'F' key press
-        if (Input.GetKeyDown(KeyCode.F) && isAttacking == false)
+        if (Input.GetMouseButton(0) && isAttacking == false)
         {
             rb.linearVelocity = Vector2.zero;
             Invoke("Attack", 0.3f);
@@ -66,14 +66,6 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) && grounded)
         {
             Jump();
-        }
-
-        //Attack on 'F' key press
-        if (Input.GetKeyDown(KeyCode.F) && isAttacking == false)
-        {
-            rb.linearVelocity = Vector2.zero;
-            Invoke("Attack", 0.3f);
-            //Debug.Log("Attacking!"); //prints to the console when attacking
         }
 
     // Animation parameters
