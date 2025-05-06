@@ -1,4 +1,3 @@
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
@@ -17,17 +16,16 @@ public class EnemyHealth : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    public void TakeDamage(int amount, Rigidbody2D player)
+    public void EnemyTakeDamage(int amount, Rigidbody2D player)
     {   
         currentHealth -= amount;
         Debug.Log("Enemy took damage! Remaining: " + currentHealth);
-        
+                
         // Play enemy damage sound
         if (AudioManager.Instance != null)
         {
             AudioManager.Instance.PlayEnemyDamage();
         }
-
         if (currentHealth <= 0)
         {
             rb.bodyType = RigidbodyType2D.Static;
@@ -43,13 +41,13 @@ public class EnemyHealth : MonoBehaviour
     private void Die()
     {
         Debug.Log("Enemy died!");
-        
+        Destroy(gameObject, 0.5f); //letting you know when the enemy dies
+                
         // Play enemy death sound
         if (AudioManager.Instance != null)
         {
             AudioManager.Instance.PlayEnemyDeath();
         }
         
-        Destroy(gameObject, 0.5f); //letting you know when the enemy dies
     }
 }

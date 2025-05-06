@@ -72,10 +72,11 @@ public class GameManager : MonoBehaviour
     }
 
     public void QuitToMenu()
-    {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu"); 
-    }
+{
+    if (pausePanel) pausePanel.SetActive(false);
+    Time.timeScale = 1f;
+    SceneManager.LoadScene("MainMenu"); 
+}
     
     public void BossDefeated()
     {

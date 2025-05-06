@@ -1,5 +1,4 @@
 using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Rendering.RenderGraphModule;
 
@@ -130,7 +129,7 @@ public class PlayerMovement : MonoBehaviour
             // Detect enemies in range and deal damage
             hitEnemies = Physics2D.CircleCast(attackTransform.position, attackRange, transform.right, 0f, attackableLayer);
             EnemyHealth enemyHealth = hitEnemies.collider.gameObject.GetComponent<EnemyHealth>();
-            enemyHealth.TakeDamage(attackDamage, rb);
+            enemyHealth.EnemyTakeDamage(attackDamage, rb);
             //resetting attack flag
             Invoke("ResetAttack", 0.8f);
         }

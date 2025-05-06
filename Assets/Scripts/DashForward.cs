@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Resources;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class DashFoward : MonoBehaviour
@@ -13,6 +12,7 @@ public class DashFoward : MonoBehaviour
     private Rigidbody2D rb;
     private Coroutine dashCoroutine;
     private Animator anim;
+    private float elapsedTime = 0f;
     public bool dashing {get; private set;}
 
     private void Start()
@@ -24,7 +24,7 @@ public class DashFoward : MonoBehaviour
     public IEnumerator Dash(){
         dashing = true;
 
-        float elapsedTime = 0f;
+        elapsedTime = 0f;
         gameObject.layer = LayerMask.NameToLayer("TransparentFX");
         gameObject.name = "Invincible";
         while(elapsedTime < dashtime){
