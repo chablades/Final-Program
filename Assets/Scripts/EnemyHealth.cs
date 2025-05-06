@@ -21,6 +21,12 @@ public class EnemyHealth : MonoBehaviour
     {   
         currentHealth -= amount;
         Debug.Log("Enemy took damage! Remaining: " + currentHealth);
+        
+        // Play enemy damage sound
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayEnemyDamage();
+        }
 
         if (currentHealth <= 0)
         {
@@ -37,6 +43,13 @@ public class EnemyHealth : MonoBehaviour
     private void Die()
     {
         Debug.Log("Enemy died!");
+        
+        // Play enemy death sound
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayEnemyDeath();
+        }
+        
         Destroy(gameObject, 0.5f); //letting you know when the enemy dies
     }
 }
