@@ -6,6 +6,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private int maxHealth = 2;
     private int currentHealth;
     private Rigidbody2D rb;
+    private Animator anim;
     public bool isDamaged = false;
     private KnockbackEnemy knockbackEnemy;
     private void Start()
@@ -13,6 +14,7 @@ public class EnemyHealth : MonoBehaviour
         currentHealth = maxHealth;
         rb = GetComponent<Rigidbody2D>();
         knockbackEnemy = GetComponent<KnockbackEnemy>();
+        anim = GetComponent<Animator>();
     }
 
     public void TakeDamage(int amount, Rigidbody2D player)
@@ -22,6 +24,10 @@ public class EnemyHealth : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            rb.bodyType = RigidbodyType2D.Static;
+            anim.SetBool("Moving", false);
+            anim.SetBool("hasTarget", false);
+            anim.SetTrigger("death");
             Die();
         }
         
@@ -31,6 +37,6 @@ public class EnemyHealth : MonoBehaviour
     private void Die()
     {
         Debug.Log("Enemy died!");
-        Destroy(gameObject); //letting you know when the enemy dies
+        Destroy(gameObject, 0.5f); //letting you know when the enemy dies
     }
 }

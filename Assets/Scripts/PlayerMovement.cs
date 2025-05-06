@@ -54,23 +54,23 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-    if (knockback.IsBeingKnockedBack ==false && isAttacking == false && dash.dashing == false)
-        Move();
-        //Dash with cooldown of aprox 5s
-        if (Input.GetMouseButton(1) && dashtimer > dashCooldown) //right click
-        {
-            Dash();
-        }
+        if (knockback.IsBeingKnockedBack ==false && isAttacking == false && dash.dashing == false)
+            Move();
+            //Dash with cooldown of aprox 5s
+            if (Input.GetMouseButton(1) && dashtimer > dashCooldown) //right click
+            {
+                Dash();
+            }
 
-        //jump
-        if (Input.GetKey(KeyCode.Space) && grounded)
-        {
-            Jump();
-        }
+            //jump
+            if (Input.GetKey(KeyCode.Space) && grounded)
+            {
+                Jump();
+            }
 
-    // Animation parameters
-    anim.SetBool("grounded", grounded);
-    dashtimer += Time.fixedDeltaTime;
+        // Animation parameters
+        anim.SetBool("grounded", grounded);
+        dashtimer += Time.fixedDeltaTime;
     }
 
 

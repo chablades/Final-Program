@@ -60,15 +60,17 @@ public class EnemyFollow : MonoBehaviour
             }
         }
     }
-    private void OnTriggerEnter2D(){
-        if (isAttacking == false){
-            isAttacking = true;
-            anim.SetBool("hasTarget", true);
+    private void OnTriggerEnter2D(Collider2D player){
+        if (player.gameObject.name.Equals("Player")){
+            if (isAttacking == false){
+                isAttacking = true;
+                anim.SetBool("hasTarget", true);
 
-            Invoke("Attack", 0.5f);
-            
-            //resetting enemy attack flag
-            Invoke("ResetAttack", 1.0f);
+                Invoke("Attack", 0.5f);
+                
+                //resetting enemy attack flag
+                Invoke("ResetAttack", 1.0f);
+            }
         }
     }
 

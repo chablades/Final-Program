@@ -25,6 +25,8 @@ public class DashFoward : MonoBehaviour
         dashing = true;
 
         float elapsedTime = 0f;
+        gameObject.layer = LayerMask.NameToLayer("TransparentFX");
+        gameObject.name = "Invincible";
         while(elapsedTime < dashtime){
             //iterate the timer
             elapsedTime += Time.fixedDeltaTime;
@@ -40,6 +42,8 @@ public class DashFoward : MonoBehaviour
             yield return new WaitForFixedUpdate();
 
         }
+        gameObject.layer = LayerMask.NameToLayer("PlayerAttacked");
+        gameObject.name = "Player";
         dashing = false;
         Debug.Log("Not Dashing");
         anim.SetBool("dashing", false);

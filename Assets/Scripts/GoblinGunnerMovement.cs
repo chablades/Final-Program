@@ -74,7 +74,7 @@ public class GoblinGUnnerMovement : MonoBehaviour
     }
     private void Shoot(){
         float distance = Vector2.Distance(transform.position, player.position);
-        if (Time.time > fireTimer)
+        if (Time.time > fireTimer && distance < detectionRange)
         {
             anim.SetTrigger("hasTarget");
             rb.linearVelocity = Vector2.zero;

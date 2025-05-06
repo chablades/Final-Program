@@ -9,10 +9,14 @@ public class PlayerHealth : MonoBehaviour
     private int currentLives;
 
     private Knockback knockback;
+    private Rigidbody2D rb;
+    private Animator anim;
     private void Start()
     {
         currentLives = maxLives;
+        rb= GetComponent<Rigidbody2D>();
         knockback = GetComponent<Knockback>();
+        anim = GetComponent<Animator>();
     }
 
     public void TakeDamage(int damage, Rigidbody2D enemy)
@@ -22,7 +26,9 @@ public class PlayerHealth : MonoBehaviour
        
         if (currentLives <= 0)
         {
-            Die();
+            rb.bodyType = RigidbodyType2D.Static;
+            anim.SetTrigger("death");
+            Invoke("Die", 1f);
         }
         
          //Vector2 direction = (transform.position - other.transform.position).normalized;

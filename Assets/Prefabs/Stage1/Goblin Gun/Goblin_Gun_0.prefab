@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1
-  detectionRange: 5
+  detectionRange: 10
   movingRange: 5
   fireRate: 5
   damageAmount: 1
