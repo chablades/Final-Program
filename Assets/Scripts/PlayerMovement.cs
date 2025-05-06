@@ -106,6 +106,13 @@ public class PlayerMovement : MonoBehaviour
         if(isAttacking == false){
             rb.linearVelocity = Vector2.zero;
             isAttacking = true;
+            
+            // Play sword swing sound
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlaySwordSwing();
+            }
+            
             if (attackcounter == 0){
                 anim.SetTrigger("attacking0"); // Trigger attack animation
                 attackcounter +=1;
