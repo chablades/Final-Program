@@ -938,6 +938,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &328496697 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8967897949082900327, guid: 135eb46314362bd4c8a5a00360bda787, type: 3}
+  m_PrefabInstance: {fileID: 1119633145}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &348898052
 GameObject:
   m_ObjectHideFlags: 0
@@ -2740,6 +2745,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 242749768165602506, guid: 135eb46314362bd4c8a5a00360bda787, type: 3}
   m_PrefabInstance: {fileID: 1119633145}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &747614310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 328496697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c0a088ad973dff449c55cb25b4ef833, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicSource: {fileID: 0}
+  sfxSource: {fileID: 0}
+  swordSwingSound: {fileID: 8300000, guid: 0f1320ed56815f3498a9159c76651edb, type: 3}
+  playerDamageSound: {fileID: 0}
+  enemyDamageSound: {fileID: 0}
+  enemyDeathSound: {fileID: 0}
 --- !u!1 &786957158
 GameObject:
   m_ObjectHideFlags: 0
@@ -4201,7 +4224,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 242749768165602506, guid: 135eb46314362bd4c8a5a00360bda787, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2085910004}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8967897949082900327, guid: 135eb46314362bd4c8a5a00360bda787, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 747614310}
   m_SourcePrefab: {fileID: 100100000, guid: 135eb46314362bd4c8a5a00360bda787, type: 3}
 --- !u!1 &1169515641
 GameObject:
