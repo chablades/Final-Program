@@ -3593,7 +3593,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -4085,7 +4085,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 726435565073471104, guid: 0424ff07b816abf4082fedd313123a63, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.52
+      value: -0.54
       objectReference: {fileID: 0}
     - target: {fileID: 726435565073471104, guid: 0424ff07b816abf4082fedd313123a63, type: 3}
       propertyPath: m_LocalPosition.y
