@@ -2762,7 +2762,7 @@ MonoBehaviour:
   swordSwingSound: {fileID: 8300000, guid: 0f1320ed56815f3498a9159c76651edb, type: 3}
   playerDamageSound: {fileID: 0}
   enemyDamageSound: {fileID: 0}
-  enemyDeathSound: {fileID: 0}
+  enemyDeathSound: {fileID: 8300000, guid: c25c8107e2212a94585b758549cae6a7, type: 3}
 --- !u!1 &786957158
 GameObject:
   m_ObjectHideFlags: 0
