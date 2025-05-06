@@ -66,10 +66,10 @@ public class EnemyFollow : MonoBehaviour
                 isAttacking = true;
                 anim.SetBool("hasTarget", true);
 
-                Invoke("Attack", 0.5f);
+                Invoke("Attack", 0.7f);
                 
                 //resetting enemy attack flag
-                Invoke("ResetAttack", 1.0f);
+                Invoke("ResetAttack", 0.5f);
             }
         }
     }
