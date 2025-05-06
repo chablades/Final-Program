@@ -23,6 +23,12 @@ public class PlayerHealth : MonoBehaviour
         currentLives -= damage;
         Debug.Log("Player took damage! Lives left: " + currentLives);
        
+        // Play player damage sound
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayPlayerDamage();
+        }
+        
         if (currentLives <= 0)
         {
             rb.bodyType = RigidbodyType2D.Static;
