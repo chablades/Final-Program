@@ -57,7 +57,11 @@ public class GameManager : MonoBehaviour
         if (pausePanel) pausePanel.SetActive(false);
     }
 
-    
+    public void QuitToMenu()
+{
+    Time.timeScale = 1f;
+    SceneManager.LoadScene("MainMenu"); 
+}
     
 
 }
