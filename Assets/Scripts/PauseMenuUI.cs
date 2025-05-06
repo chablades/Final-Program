@@ -18,6 +18,6 @@ public class PauseMenuUI : MonoBehaviour
         // hook the listeners
         resumeButton.onClick.AddListener(() => GameManager.Instance.ResumeGame());
         restartButton.onClick.AddListener(() => GameManager.Instance.RestartLevel());
-        //quitButton.onClick.AddListener(() => GameManager.Instance.QuitToMenu());
+        quitButton.onClick.AddListener(() => GameManager.Instance.QuitToMenu());
     }
 }
