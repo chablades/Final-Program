@@ -17,7 +17,7 @@ public class EnemyHealth : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    public void TakeDamage(int amount, Rigidbody2D player)
+    public void EnemyTakeDamage(int amount, Rigidbody2D player)
     {   
         currentHealth -= amount;
         Debug.Log("Enemy took damage! Remaining: " + currentHealth);
